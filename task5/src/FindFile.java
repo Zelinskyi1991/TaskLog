@@ -1,0 +1,49 @@
+import java.io.File;
+import java.util.Scanner;
+
+/**
+ * Created by Sasha on 04.03.2015.
+ */
+public class FindFile {
+
+
+
+       /*Задание 5. Напишите программу, ищущую в указанной папке (и всех подпапках) файлы с указанным размером в байтах +/- 10%
+       *  (размер указывается как параметр командной строки). Результат поиска выводите в консоль в виде:
+              c:/dir1/dir2/file1.ext
+              c:/dir1/dir2/file2.ext
+              Пояснение по поводу +/- 10%: размер анализируемого файла должен находиться в этом диапазоне от указанного, т.е.,
+              например, если сказано искать файлы размером 100 байт, то подходят файлы размером от 90 до 110 байт (включительно).
+
+*/
+
+
+
+    public void findFile(String name,File file)
+    {
+        File[] list = file.listFiles();
+        if(list!=null)
+            for (File fil : list)
+            {
+                if (fil.isDirectory())
+                {
+                    findFile(name,fil);
+                }
+                else if (name.equalsIgnoreCase(fil.getName()))
+                {
+                    System.out.println(fil.getParentFile());
+                }
+            }
+    }
+    public static void main(String[] args)
+    {
+        FindFile ff = new FindFile();
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter the file to be searched.. " );
+        String name = scan.next();
+        System.out.println("Enter the directory where to search ");
+        String directory = scan.next();
+        ff.findFile(name,new File(directory));
+    }
+}
+
