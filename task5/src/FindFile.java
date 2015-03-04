@@ -37,6 +37,8 @@ public class FindFile {
     }
     public static void main(String[] args)
     {
+        System.out.println("hello world" +
+                "");
         FindFile ff = new FindFile();
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter the file to be searched.. " );
